@@ -93,3 +93,22 @@ def course(request,course_id):
     print(course_id)
     course1 = Course.objects.get(id = course_id)
     return render(request,'course.html',{'i':course1})
+
+@login_required
+def my_courses(request):
+    print(request.user)
+    student = Student.objects.get(user = request.user)
+    # print(student.courses.all)
+    # for i in student.courses.all():
+    #     print(i)
+    # print(Student.objects.filter(courses__id = 2))
+    courses = student.courses.all()
+
+    
+    return render(request,'my_courses.html',{"courses" : courses})
+
+def participants(request,course_id):
+    students = Student.objects.filter(courses__id = course_id)
+    course = Course.objects.get(id = course_id)
+    print(students)
+    return render(request,'participants.html',{'students':students,'course':course})

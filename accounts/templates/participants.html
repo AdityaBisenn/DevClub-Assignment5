@@ -7,18 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    Course Name : {{i.course_name}}
+    Participants of {{course}}
     <br>
-    Course Code : {{i.course_code}}
-    <br>
-    Year : {{i.year}} 
-    <br>
-    Sem : {{i.sem}}
-    <br>
-    Instructor : {{i.instructor}}
-    <br>
-    <a href="/participants/{{i.id}}">Participants</a>
-    <br>
+    {%for i in students%}
+    <li>{{i}}</li>
+    {%endfor%}
     <a href="/">Home</a>
 </body>
 </html>
