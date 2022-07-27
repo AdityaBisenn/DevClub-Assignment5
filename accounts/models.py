@@ -28,6 +28,7 @@ class Course(models.Model):
     year = models.IntegerField()
     sem = models.IntegerField()
     course_desc = models.TextField()
+    instructor = models.ForeignKey(Instructor,on_delete=models.CASCADE)
 
     status1 = (('1','ongoing'),('2','completed'),('3','upcoming'))
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login
-from .models import Student
+from .models import Student, Course
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -79,3 +79,17 @@ def my_profile(request):
     print(student)
     print(student.entry_num)
     return render(request,'my_profile.html',{'name' : student.first_name +' ' + student.last_name,"entry":student.entry_num , 'email':student.email,'dob':student.date_of_birth})
+
+@login_required
+def all_courses(request):
+    course_list = Course.objects.all()
+    for i in course_list:
+        print(i.course_code)
+    print(course_list)
+    return render(request,'all_courses.html',{'course_list':course_list})
+
+@login_required
+def course(request,course_id):
+    print(course_id)
+    course1 = Course.objects.get(id = course_id)
+    return render(request,'course.html',{'i':course1})
