@@ -107,6 +107,7 @@ def my_courses(request):
     
     return render(request,'my_courses.html',{"courses" : courses})
 
+@login_required
 def participants(request,course_id):
     students = Student.objects.filter(courses__id = course_id)
     course = Course.objects.get(id = course_id)

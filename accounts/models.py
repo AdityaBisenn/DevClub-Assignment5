@@ -46,10 +46,7 @@ class Student(models.Model):
     def __str__(self):
         return self.first_name+' ' + self.last_name+' ' +str(self.entry_num)
 
-class Grades(models.Model):
-    student = models.ForeignKey(Student,on_delete=models.CASCADE)
-    course_id = models.ForeignKey(Course,on_delete=models.CASCADE)
-    grade = models.IntegerField()
+
 
 
     
